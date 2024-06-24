@@ -1,0 +1,38 @@
+---
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+runson: mac
+
+autosplit: true
+
+concurrency: 1
+
+runtime:
+  language: dotnet 
+  version: "8.0"
+
+env:
+#  PAT: ${{ .secrets.testKey }}
+ PROJECT_TOKEN: 1136953#06984fd3-b214-4ea6-bd08-52cbc92b03a7#C#_SDK
+
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+pre:
+  - dotnet clean
+  - dotnet build
+  - npm i @lambdatest/smartui-cli
+  - dotnet restore
+  - npx smartui config:create .smartui.json
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: echo cloud
+
+testRunnerCommand: npx smartui --config .smartui.json exec -- dotnet run $test
+
+jobLabel: [selenium-python, win, autosplit]

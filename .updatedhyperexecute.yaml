@@ -1,0 +1,128 @@
+alwaysRunPostSteps: false
+appium: false
+autosplit: true
+betaFeature:
+    setPartiallyCompletedAsCompleted: false
+cacheDirectories:
+    - node_modules
+cacheKey: '{{ checksum "package-lock.json" }}'
+captureScreenRecordingForScenarios: false
+codeDirectory: LambdaTest.Selenium.Driver.Test
+collectLocalGitData: true
+combineTasksInMatrixMode: false
+concurrency: 1
+cypress: false
+differentialUpload:
+    enabled: false
+    forcedDisabled: false
+    ttlHours: null
+dynamicAllocation: false
+env:
+    PROJECT_TOKEN: 1136953#06984fd3-b214-4ea6-bd08-52cbc92b03a7#C#_SDK
+errorCategorizedOnFailureOnly: false
+framework:
+    additional_args: null
+    args:
+        appId: ""
+        appPath: ""
+        avoidAppLaunch: false
+        deviceSelectionStrategy: ""
+        devices: []
+        disableReleaseDevice: false
+        filters:
+            attributes: []
+        fixedIP: ""
+        isRealMobile: false
+        isVirtualDevice: false
+        language: ""
+        locale: ""
+        minorOsVersion: false
+        mobileDC: null
+        platformName: ""
+        playwrightRD: false
+        preservedDevice: false
+        queueTimeout: 0
+        resignApp: true
+        shards:
+            mappings: []
+        skipInstall: false
+        skipUninstallPreviousBuild: false
+        skipXMLOnRun: false
+        testSuiteAppId: ""
+        testSuitePath: ""
+        uninstallPreviousBuild: false
+        xcTestPlanId: ""
+        xcTestPlanPath: ""
+    baseCommand: ""
+    defaultReports: false
+    discoveryFlags: []
+    discoveryType: ""
+    downloadURL: ""
+    flags: []
+    isTestNGXMLSuite: false
+    licenseKey: ""
+    name: ""
+    runnerFlags: []
+    toscaArgs: null
+    userdefinediscovery: false
+    version: ""
+    workingDirectory: ""
+globalTimeout: 90
+jobID: bfae27d7-e79d-4be5-b525-be76d077fd41
+jobLabel:
+    - selenium-python
+    - win
+    - autosplit
+key: dl8Y8as59i1YyGZZUeLF897aCFvIDmaKkUU1e6RgBmlgMLIIhh
+localHTTPProxy: ""
+maxRetriesPreSteps: 0
+meta: {}
+platformConfig: null
+postDirectives:
+    commands: []
+    shell: ""
+    workingDirectory: ""
+pre:
+    - dotnet clean
+    - dotnet build
+    - npm i @lambdatest/smartui-cli
+    - dotnet restore
+    - npx smartui config:create .smartui.json
+preDirectives:
+    commands:
+        - dotnet clean
+        - dotnet build
+        - npm i @lambdatest/smartui-cli
+        - dotnet restore
+        - npx smartui config:create .smartui.json
+    maxRetries: 0
+    shell: ""
+    workingDirectory: ""
+project:
+    id: ""
+    name: ""
+    type: default
+runson: mac
+runtime:
+    language: dotnet
+    version: "8.0"
+    addons: []
+    opts: {}
+sourcePayload:
+    verifySSL: true
+storageType: ""
+testDiscovery:
+    autosubset: true
+    command: echo cloud
+    mode: dynamic
+    type: raw
+testDiscoveryResultV3: []
+testRunnerCommand: npx smartui --config .smartui.json exec -- dotnet run $test
+testSuiteStep: 90
+testSuiteTimeout: 90
+testSuites: []
+triggerMode: false
+tunnelOpts:
+    testsPerTunnel: 10
+user: shubhamr
+version: "0.1"

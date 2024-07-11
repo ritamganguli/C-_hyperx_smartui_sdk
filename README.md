@@ -27,19 +27,24 @@ cd smartui-csharp-sample/LambdaTest.Selenium.Driver.Test
 ### <a name="_lx646r3hpk5k"></a>**Step 2: Update the Dependencies[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-2-update-the-dependencies)**
 - Add the following dependencies in your .csproj file
 
-<ItemGroup>
 
-`   `<PackageReference Include="LambdaTest.Selenium.Driver" Version="1.0.1" />
+```  
 
-</ItemGroup>
-
+  <ItemGroup>
+  
+  `   `<PackageReference Include="LambdaTest.Selenium.Driver" Version="1.0.1" />
+  
+  </ItemGroup>
+```
 NOTE
 
 You can check the latest version of [LambdaTest.Selenium.Driver](https://www.nuget.org/packages/LambdaTest.Selenium.Driver) and update the latest version accordingly.
 ### <a name="_af8f89foua57"></a>**Step 3: Install the Dependencies[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-3-install-the-dependencies)**
 Install required NPM modules for LambdaTest Smart UI Selenium SDK in your Frontend project.
 
+```
 npm i @lambdatest/smartui-cli
+```
 
 dotnet restore
 ### <a name="_wnd3sajqvzpi"></a>**Step 4: Configure your Project Token[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-4-configure-your-project-token)**
@@ -49,7 +54,9 @@ Setup your project token show in the SmartUI app after, creating your project.
 - Windows - CMD
 - Windows-PS
 
+```
 export PROJECT\_TOKEN="123456#1234abcd-\*\*\*\*-\*\*\*\*-\*\*\*\*-\*\*\*\*\*\*\*\*\*\*\*\*"
+```
 
 
 
@@ -62,7 +69,13 @@ npx smartui config:create .smartui.json
 
 Once, the configuration file will be created, you will be seeing the default configuration pre-filled in the configuration file:
 
+
+```
 /smartui-sdk-project/.smartui.json
+
+```
+
+```
 
 {
 
@@ -129,6 +142,8 @@ Once, the configuration file will be created, you will be seeing the default con
 ` `"allowedHostnames": [] //Additional hostnames to capture assets from
 
 }
+
+```
 
 
 ADVANCED OPTIONS IN SMARTUI CONFIGURATION

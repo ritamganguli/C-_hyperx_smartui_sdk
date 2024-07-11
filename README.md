@@ -51,6 +51,7 @@ pre:
 
 ### <a name="_wnd3sajqvzpi"></a>**Step 4: Configure your Project Token[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-4-configure-your-project-token)**
 Setup your project token show in the SmartUI app after, creating your project.
+And set the same over env params in your yaml
 
 - MacOS/Linux
 - Windows - CMD
@@ -249,4 +250,28 @@ await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name",options);
 ```
 
 For additional information about SmartUI APIs please explore the documentation [here](https://www.lambdatest.com/support/api-doc/)
+
+
+# Triggering your First Test Case Over HyperX
+
+Before using HyperExecute, you have to download HyperExecute CLI corresponding to the host OS. Along with it, you also need to export the environment variables *LT_USERNAME* and *LT_ACCESS_KEY* that are available in the [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
+
+## Download HyperExecute CLI
+
+HyperExecute CLI is the CLI for interacting and running the tests on the HyperExecute Grid. The CLI provides a host of other useful features that accelerate test execution. In order to trigger tests using the CLI, you need to download the HyperExecute CLI binary corresponding to the platform (or OS) from where the tests are triggered:
+
+Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the HyperExecute CLI binary:
+
+* Mac: https://downloads.lambdatest.com/hyperexecute/darwin/hyperexecute
+* Linux: https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute
+* Windows: https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe
+
+
+#### Execute Your Smart UI Test Case 
+
+Run the following command on the terminal to trigger the tests in Java files with HyperExecute platform set to Windows. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job. The *--force-clean-artifacts* option force cleans any existing artifacts for the project.
+
+```bash
+./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --config ritam.yaml
+```
 

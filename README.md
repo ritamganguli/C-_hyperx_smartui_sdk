@@ -151,10 +151,12 @@ namespace LambdaTest.Selenium.TestProject
 }
 ```
 
-### <a name="_ofipr9spu8je"></a>**Step 7: Execute the Tests on SmartUI Cloud[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-7-execute-the-tests-on-smartui-cloud)**
-Execute visual regression tests on SmartUI using the following commands
+### <a name="_ofipr9spu8je"></a>**Step 7: Execute the Tests on SmartUI Cloud USing HyperX[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-7-execute-the-tests-on-smartui-cloud)**
+Execute visual regression tests on SmartUI HyperX using the following commands
 
-npx smartui --config .smartui.json exec -- dotnet run cloud
+```
+testRunnerCommand: npx smartui --config .smartui.json exec -- dotnet run $test
+```
 
 NOTE
 
@@ -184,25 +186,21 @@ When conducting visual tests, you may encounter scenarios where certain elements
 
 This is a sample for your configuration for C# to ignore by ID
 
+```
 driver.Navigate().GoToUrl("Required URL");
 
 var options = new Dictionary<string, object>
-
 {
-
-`   `{ "ignoreDOM", new Dictionary<string, object>
-
-`       `{
-
-`           `{ "id", new[] { "ID-1", "ID-2" } }
-
-`       `}
-
-`   `}
-
+    { "ignoreDOM", new Dictionary<string, object>
+        {
+            { "id", new[] { "ID-1", "ID-2" } }
+        }
+    }
 };
-
 await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name",options);
+```
+
+
 
 - Select ID
 - Select Class
@@ -211,25 +209,20 @@ await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name",options);
 
 This is a sample for your configuration for C# to select by ID
 
+```
 driver.Navigate().GoToUrl("Required URL");
 
 var options = new Dictionary<string, object>
-
 {
-
-`   `{ "selectDOM", new Dictionary<string, object>
-
-`       `{
-
-`           `{ "id", new[] { "ID-1", "ID-2" } }
-
-`       `}
-
-`   `}
-
+    { "selectDOM", new Dictionary<string, object>
+        {
+            { "id", new[] { "ID-1", "ID-2" } }
+        }
+    }
 };
-
 await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name",options);
+```
+
 ## <a name="_v7143bbimcqy"></a>**For capturing the screenshot of a specific element[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#for-capturing-the-screenshot-of-a-specific-element)**
 You can capture screenshots of targeted elements by leveraging various locator mechanisms such as XPath, CSS ID, class, and selectors. This precision-driven approach ensures accurate and specific visual regression testing for your web application's components.
 
@@ -240,25 +233,20 @@ You can capture screenshots of targeted elements by leveraging various locator m
 
 This is a sample for your configuration for C# to capture an element by ID
 
+```
 driver.Navigate().GoToUrl("Required URL");
 
 var options = new Dictionary<string, object>
-
 {
-
-`   `{ "element", new Dictionary<string, object>
-
-`       `{
-
-`           `{ "id", new[] { "Required ID"} }
-
-`       `}
-
-`   `}
-
+    { "element", new Dictionary<string, object>
+        {
+            { "id", new[] { "Required ID"} }
+        }
+    }
 };
-
 await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name",options);
+
+```
 
 For additional information about SmartUI APIs please explore the documentation [here](https://www.lambdatest.com/support/api-doc/)
 

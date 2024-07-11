@@ -29,24 +29,26 @@ cd smartui-csharp-sample/LambdaTest.Selenium.Driver.Test
 
 
 ```  
-
-  <ItemGroup>
-  
-  `   `<PackageReference Include="LambdaTest.Selenium.Driver" Version="1.0.1" />
-  
-  </ItemGroup>
+<ItemGroup>
+    <PackageReference Include="LambdaTest.Selenium.Driver" Version="1.0.1" />
+</ItemGroup>
 ```
 NOTE
 
 You can check the latest version of [LambdaTest.Selenium.Driver](https://www.nuget.org/packages/LambdaTest.Selenium.Driver) and update the latest version accordingly.
 ### <a name="_af8f89foua57"></a>**Step 3: Install the Dependencies[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-3-install-the-dependencies)**
-Install required NPM modules for LambdaTest Smart UI Selenium SDK in your Frontend project.
+Install required NPM modules for LambdaTest Smart UI Selenium SDK in your Frontend project over the pre steps.
 
 ```
-npm i @lambdatest/smartui-cli
+pre:
+  - dotnet clean
+  - dotnet build
+  - npm i @lambdatest/smartui-cli
+  - dotnet restore
+  - npx smartui config:create .smartui.json
 ```
 
-dotnet restore
+
 ### <a name="_wnd3sajqvzpi"></a>**Step 4: Configure your Project Token[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-4-configure-your-project-token)**
 Setup your project token show in the SmartUI app after, creating your project.
 
@@ -55,10 +57,9 @@ Setup your project token show in the SmartUI app after, creating your project.
 - Windows-PS
 
 ```
-export PROJECT\_TOKEN="123456#1234abcd-\*\*\*\*-\*\*\*\*-\*\*\*\*-\*\*\*\*\*\*\*\*\*\*\*\*"
+env:
+ PROJECT_TOKEN: ritam*---------#C#_SDK
 ```
-
-
 
 
 
@@ -71,76 +72,38 @@ Once, the configuration file will be created, you will be seeing the default con
 
 
 ```
-/smartui-sdk-project/.smartui.json
-
-```
-
-```
-
 {
-
-` `"web": {
-
-`   `"browsers": [
-
-`     `"chrome",
-
-`     `"firefox",
-
-`     `"safari",
-
-`     `"edge"
-
-`   `],
-
-`   `"viewports": [
-
-`     `[
-
-`       `1920
-
-`     `],
-
-`     `[
-
-`       `1366
-
-`     `],
-
-`     `[
-
-`       `1028
-
-`     `]
-
-`   `] // Full Page screenshots are captured by default for web viewports
-
-` `},
-
-` `"mobile": {
-
-`   `"devices": [
-
-`     `"iPhone 14",  //iPhone 14 viewport
-
-`     `"Galaxy S24"  //Galaxy S24 viewport
-
-`   `],
-
-`   `"fullPage": true, //Full Page is true by default for mobile viewports
-
-`   `"orientation": "portrait" //Change to "landscape" for landscape snapshot
-
-` `},
-
-` `"waitForTimeout": 1000, //Optional (Should only be used in case lazy-loading/async components are present)
-
-` `"waitForPageRender": 50000, //Optional (Should only be used in case of websites which take more than 30s to load)
-
-` `"enableJavaScript": false, //Enable javascript for all the screenshots of the project
-
-` `"allowedHostnames": [] //Additional hostnames to capture assets from
-
+  "web": {
+    "browsers": [
+      "chrome",
+      "firefox",
+      "safari",
+      "edge"
+    ],
+    "viewports": [
+      [
+        1920
+      ],
+      [
+        1366
+      ],
+      [
+        1028
+      ]
+    ] // Full Page screenshots are captured by default for web viewports
+  },
+  "mobile": {
+    "devices": [
+      "iPhone 14",  //iPhone 14 viewport
+      "Galaxy S24"  //Galaxy S24 viewport
+    ],
+    "fullPage": true, //Full Page is true by default for mobile viewports
+    "orientation": "portrait" //Change to "landscape" for landscape snapshot
+  },
+  "waitForTimeout": 1000, //Optional (Should only be used in case lazy-loading/async components are present)
+  "waitForPageRender": 50000, //Optional (Should only be used in case of websites which take more than 30s to load)
+  "enableJavaScript": false, //Enable javascript for all the screenshots of the project
+  "allowedHostnames": [] //Additional hostnames to capture assets from
 }
 
 ```
@@ -154,64 +117,39 @@ ADVANCED OPTIONS IN SMARTUI CONFIGURATION
 ### <a name="_fm4lfeie8puj"></a>**Step 6: Adding SmartUI function to take screenshot[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-6-adding-smartui-function-to-take-screenshot)**
 - You can incorporate SmartUI into your custom Selenium automation test (any platform) script by adding the smartuiSnapshot function in the required segment of selenium script of which we would like to take the screenshot, as shown below:
 
+```
 using System;
-
 using System.Threading.Tasks;
-
 using OpenQA.Selenium;
-
 using OpenQA.Selenium.Chrome;
-
 using LambdaTest.Selenium.Driver;
 
 
 namespace LambdaTest.Selenium.TestProject
-
 {
-
-`   `public static class LocalTest
-
-`   `{
-
-`       `public static async Task Run()
-
-`       `{
-
-`           `using IWebDriver driver = new ChromeDriver();
-
-`           `try
-
-`           `{  
-
-`               `Console.WriteLine("Driver started");
-
-`               `driver.Navigate().GoToUrl("Required URL");
-
-`               `await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name"); *//utilize this function to take the dom snapshot of your test*
-
-`           `}
-
-`           `catch (Exception ex)
-
-`           `{
-
-`               `Console.WriteLine(ex);
-
-`           `}
-
-`           `finally
-
-`           `{
-
-`               `driver.Quit();
-
-`           `}
-
-`       `}
-
-`   `}
-
+    public static class LocalTest
+    {
+        public static async Task Run()
+        {
+            using IWebDriver driver = new ChromeDriver();
+            try
+            {   
+                Console.WriteLine("Driver started");
+                driver.Navigate().GoToUrl("Required URL");
+                await SmartUISnapshot.CaptureSnapshot(driver, "Screenshot Name"); //utilize this function to take the dom snapshot of your test
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                driver.Quit();
+            }
+        }
+    }
 }
+```
 
 ### <a name="_ofipr9spu8je"></a>**Step 7: Execute the Tests on SmartUI Cloud[​**](https://www.lambdatest.com/support/docs/smartui-selenium-csharp-sdk/#step-7-execute-the-tests-on-smartui-cloud)**
 Execute visual regression tests on SmartUI using the following commands
